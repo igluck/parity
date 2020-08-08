@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: parity-test
+  labels:
+    app: parity-test
+spec:
+  ports:
+  - port: 30303
+    protocol: TCP
+    name: tcp30303
+  - port: 30303
+    protocol: UDP
+    name: udp30303
+  - port: 5001
+    name: p5001
+  clusterIP: None
+  selector:
+    app: parity-test
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: parity-test
+spec:
+  selector:
+    matchLabels:
+      app: parity-test
+  serviceName: "parity-test"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: parity-test
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: parity
+        image: parity/parity:v2.5.13-stable
+        ports:
+        - containerPort: 30303
+          protocol: TCP
+          name: tcp30303
+        - containerPort: 30303
+          protocol: UDP
+          name: udp30303
+        - containerPort: 5001
+          name: p5001
+        volumeMounts:
+        - name: parity
+          mountPath: /home/parity
+  volumeClaimTemplates:
+  - metadata:
+      name: parity-test
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "my-storage-class"
+      resources:
+        requests:
+          storage: 1Gi
