@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node0
+  labels:
+    apps: nodes
+spec:
+  containers:
+    - name: node0
+      image: parity/parity:v2.5.13-stable
+      command: [ "/bin/parity","--config"]
+      args: ["/home/parity/config/node0.toml"]
+      #command: [ "/bin/parity account new --config /home/parity/config/node0.toml"] # --keys-path /tmp/parity"]
+
+      #args: ["-c", "--chain=/home/parity/demo-spec.json/demo-spec.json","-d /tmp/parity0 --port 30300 --jsonrpc-port 8540 --ws-port 8450 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts" ]
+      volumeMounts:
+      - name: chain
+        mountPath: /home/parity/chain
+        readOnly: true
+      - name: config
+        mountPath: /home/parity/config
+        readOnly: true
+      - name: pwds
+        mountPath: /home/parity/pwds
+        readOnly: true
+  volumes:
+    - name: chain
+      configMap:
+        name: demo-spec
+    - name: config
+      configMap:
+        name: node0
+    - name: pwds
+      configMap:
+        name: nodepwds
+  restartPolicy: Never

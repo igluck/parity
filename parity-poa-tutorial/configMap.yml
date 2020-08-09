@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: '<Config map name>'
+    namespace: '<Config map namesapce>'
+data:
+    name: DemoPoA
+    engine.authorityRound.params.stepDuration: '5'
+    engine.authorityRound.params.validators.list: ['0x00Bd138aBD70e2F00903268F3Db08f2D25677C9e', '0x00Aa39d30F0D20FF03a22cCfc30B7EfbFca597C2']
+    params.gasLimitBoundDivisor: '0x400'
+    params.maximumExtraDataSize: '0x20'
+    params.minGasLimit: '0x1388'
+    params.networkID: '0x2323'
+    genesis.seal.authorityRound.step: '0x0'
+    genesis.seal.authorityRound.signature: '0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+    genesis.difficulty: '0x20000'
+    genesis.gasLimit: '0x5B8D80'
+    accounts.0x0000000000000000000000000000000000000001.balance: '1'
+    accounts.0x0000000000000000000000000000000000000001.builtin.name: ecrecover
+    accounts.0x0000000000000000000000000000000000000001.builtin.pricing.linear.base: '3000'
+    accounts.0x0000000000000000000000000000000000000001.builtin.pricing.linear.word: '0'
+    accounts.0x0000000000000000000000000000000000000002.balance: '1'
+    accounts.0x0000000000000000000000000000000000000002.builtin.name: sha256
+    accounts.0x0000000000000000000000000000000000000002.builtin.pricing.linear.base: '60'
+    accounts.0x0000000000000000000000000000000000000002.builtin.pricing.linear.word: '12'
+    accounts.0x0000000000000000000000000000000000000003.balance: '1'
+    accounts.0x0000000000000000000000000000000000000003.builtin.name: ripemd160
+    accounts.0x0000000000000000000000000000000000000003.builtin.pricing.linear.base: '600'
+    accounts.0x0000000000000000000000000000000000000003.builtin.pricing.linear.word: '120'
+    accounts.0x0000000000000000000000000000000000000004.balance: '1'
+    accounts.0x0000000000000000000000000000000000000004.builtin.name: identity
+    accounts.0x0000000000000000000000000000000000000004.builtin.pricing.linear.base: '15'
+    accounts.0x0000000000000000000000000000000000000004.builtin.pricing.linear.word: '3'
+    accounts.0x004ec07d2329997267Ec62b4166639513386F32E.balance: '10000000000000000000000'
