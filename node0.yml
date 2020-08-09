@@ -7,10 +7,10 @@ metadata:
 spec:
   containers:
     - name: node0
-      image: parity/parity:v2.5.13-stable
-      command: [ "/bin/parity","--config"]
-      args: ["/home/parity/config/node0.toml"]
-      #command: [ "/bin/parity account new --config /home/parity/config/node0.toml"] # --keys-path /tmp/parity"]
+      image: openethereum/openethereum:latest
+      #command: [ "/bin/openethereum","--config"]
+      #args: ["/home/parity/config/node0.toml"]
+      #command: [ "/bin/openethereum account new --config /home/parity/config/node0.toml"] # --keys-path /tmp/parity"]
 
       #args: ["-c", "--chain=/home/parity/demo-spec.json/demo-spec.json","-d /tmp/parity0 --port 30300 --jsonrpc-port 8540 --ws-port 8450 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts" ]
       volumeMounts:
